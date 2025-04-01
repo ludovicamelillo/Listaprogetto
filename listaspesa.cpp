@@ -2,14 +2,22 @@
 #include <algorithm>
 #include <iostream>
 
+//aggiungi un oggetto alla lista
 void ListaSpesa::aggiungiOggetto(const Oggetto& oggetto) {
     oggetti.push_back(oggetto);
-    notifica();
+    notifica();  //notifica gli osservatori dopo aver aggiunto un oggetto
 }
 
+//Rimuovi un oggetto dalla lista
 void ListaSpesa::rimuoviOggetto(const std::string& nomeOggetto) {
-    oggetti.erase(std::remove_if(oggetti.begin(), oggetti.end(),
-                                 [&](Oggetto& o) { return o.getNome() == nomeOggetto; }), oggetti.end());
+    //Trova e rimuovi oggetto dalla lista
+    auto it = std::remove_if(oggetti.begin(), oggetti.end(),
+                             [&](Oggetto& o) { return o.getNome() == nomeOggetto; });
+
+    if (it != oggetti.end()) {
+        oggetti.erase(it, oggetti.end());  // Rimuovi l'oggetto trovato
+        notificaEliminazione(nomeOggetto); // Notifica gli osservatori della rimozione
+    }
     notifica();
 }
 
@@ -30,5 +38,13 @@ void ListaSpesa::rimuoviObserver(IObserver* observer) {
 void ListaSpesa::notifica() {
     for (auto observer : observers) {
         observer->aggiorna();
+    }
+}
+
+// Notifica agli osservatori che un oggetto è stato eliminato dalla lista
+void ListaSpesa::notificaEliminazione(const std::string& nomeOggetto) {
+    for (auto observer : observers) {
+        // Notifica ogni osservatore che l'oggetto è stato eliminato
+        observer->notificaEliminazione(nomeOggetto);
     }
 }

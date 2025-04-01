@@ -1,4 +1,3 @@
-
 #ifndef UTENTE_H
 #define UTENTE_H
 
@@ -17,6 +16,7 @@ public:
     void seguiLista(ListaSpesa* lista);
     void smettiDiSeguire();
     void aggiorna() override;
+    void notificaEliminazione(const std::string& nomeOggetto) override;  // Nuovo metodo per la notifica di eliminazione
     ~Utente() override;
 
 };

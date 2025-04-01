@@ -1,5 +1,3 @@
-
-
 #include "oggetto.h"
 #include "listaspesa.h"
 #include "utente.h"
