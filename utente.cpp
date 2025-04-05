@@ -3,7 +3,7 @@
 
 Utente::Utente(const std::string& nome) : nome(nome), listaSeguita(nullptr) {}
 
-void Utente::seguiLista(ListaSpesa* lista) {
+void Utente::seguiLista(const std::shared_ptr<ListaSpesa>& lista) {
     listaSeguita = lista;
     listaSeguita->aggiungiObserver(this);
 }
@@ -11,7 +11,7 @@ void Utente::seguiLista(ListaSpesa* lista) {
 void Utente::smettiDiSeguire() {
     if (listaSeguita) {
         listaSeguita->rimuoviObserver(this);
-        listaSeguita = nullptr;
+        listaSeguita.reset();
     }
 }
 
@@ -27,5 +27,5 @@ void Utente::notificaEliminazione(const std::string& prodotto) {
 }
 
 Utente::~Utente() {
-    this->smettiDiSeguire();
+    smettiDiSeguire();
 }
