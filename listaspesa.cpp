@@ -16,9 +16,9 @@ void ListaSpesa::rimuoviOggetto(const std::string& nomeOggetto) {
 
     if (it != oggetti.end()) {
         oggetti.erase(it, oggetti.end());  // Rimuovi l'oggetto trovato
-        notificaEliminazione(nomeOggetto); // Notifica gli osservatori della rimozione
+        // Stampa una sola volta la notifica
+        std::cout << "**Notifica**: La " << nomeOggetto << " è stata eliminata dalla lista della spesa." << std::endl;
     }
-    notifica();
 }
 
 void ListaSpesa::stampaLista() const {

@@ -23,7 +23,7 @@ void Utente::aggiorna() {
 }
 
 void Utente::notificaEliminazione(const std::string& prodotto) {
-    std::cout << "**Notifica**: La " << prodotto << " è stata eliminata dalla lista della spesa." << std::endl;
+    // Non stampo nulla qui per evitare duplicati
 }
 
 Utente::~Utente() {
