@@ -4,6 +4,10 @@
 
 //aggiungi un oggetto alla lista
 void ListaSpesa::aggiungiOggetto(const Oggetto& oggetto) {
+    if (oggetto.getNome().empty() || oggetto.getQuantita() <= 0){
+        std::cout<< "[Errore] Oggetto non valido. Operazione ignorata." <<std::endl;
+        return;
+    }
     oggetti.push_back(oggetto);
     notifica();  //notifica gli osservatori dopo aver aggiunto un oggetto
 }
