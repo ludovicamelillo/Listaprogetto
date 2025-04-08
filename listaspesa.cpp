@@ -20,10 +20,13 @@ void ListaSpesa::rimuoviOggetto(const std::string& nomeOggetto) {
 
     if (it != oggetti.end()) {
         oggetti.erase(it, oggetti.end());  // Rimuovi l'oggetto trovato
-        // Stampa una sola volta la notifica
-        std::cout << "**Notifica**: La " << nomeOggetto << " è stata eliminata dalla lista della spesa." << std::endl;
+        notificaEliminazione(nomeOggetto); // Notifica gli osservatori della rimozione
+        notifica(); // Mostra la nuova lista
+    } else {
+        std::cout << "[Info] Nessun oggetto chiamato \"" << nomeOggetto << "\" è stato trovato nella lista." << std::endl;
     }
 }
+
 
 void ListaSpesa::stampaLista() const {
     for (const auto& oggetto : oggetti) {
