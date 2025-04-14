@@ -38,7 +38,13 @@ void ListaSpesa::rimuoviOggetto(const std::string& nomeOggetto) {
 
 
 void ListaSpesa::stampaLista() const {
-    for (const auto& oggetto : oggetti) {
+    std::vector<Oggetto> copia = oggetti; // Copia della lista per non modificarla
+
+    std::sort(copia.begin(), copia.end(), [](const Oggetto& a, const Oggetto& b) {
+        return a.getNome() < b.getNome();
+    });
+
+    for (const auto& oggetto : copia) {
         oggetto.stampaOggetto();
     }
 }
