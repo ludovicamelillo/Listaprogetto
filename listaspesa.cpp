@@ -8,6 +8,15 @@ void ListaSpesa::aggiungiOggetto(const Oggetto& oggetto) {
         std::cout<< "[Errore] Oggetto non valido. Operazione ignorata." <<std::endl;
         return;
     }
+
+    auto it= std::find_if(oggetti.begin(), oggetti.end(),
+                          [&](const Oggetto& o) { return o.getNome() == oggetto.getNome(); });
+
+    if (it != oggetti.end()) {
+        std::cout << "[Attenzione] L'oggetto \"" << oggetto.getNome() << "\" è già presente nella lista." << std::endl;
+        return;
+    }
+
     oggetti.push_back(oggetto);
     notifica();  //notifica gli osservatori dopo aver aggiunto un oggetto
 }
