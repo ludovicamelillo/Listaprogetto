@@ -20,6 +20,8 @@ public:
 
     void setQuantita(int nuovaQuantita);
     void stampaOggetto() const;
+    std::string toString() const;
+
 };
 
 #endif // OGGETTO_H

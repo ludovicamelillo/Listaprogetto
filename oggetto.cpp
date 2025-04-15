@@ -1,5 +1,4 @@
-
-
+#include <sstream>
 #include "oggetto.h"
 #include <iostream>
 
@@ -24,4 +23,10 @@ void Oggetto::setQuantita(int nuovaQuantita) {
 
 void Oggetto::stampaOggetto() const {
     std::cout << nome << " (" << categoria << "): " << quantita << std::endl;
+}
+
+std::string Oggetto::toString() const {
+    std::ostringstream oss;
+    oss << nome << " (" << categoria << "): " << quantita;
+    return oss.str();
 }
