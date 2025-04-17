@@ -41,7 +41,10 @@ void ListaSpesa::stampaLista() const {
     std::vector<Oggetto> copia = oggetti; // Copia della lista per non modificarla
 
     std::sort(copia.begin(), copia.end(), [](const Oggetto& a, const Oggetto& b) {
-        return a.getNome() < b.getNome();
+        if (a.getCategoria() == b.getCategoria()) {
+            return a.getNome() < b.getNome();
+        }
+        return a.getCategoria() < b.getCategoria(); // Ordina prima per categoria
     });
 
     for (const auto& oggetto : copia) {
