@@ -27,7 +27,11 @@ public:
     void aggiungiObserver(IObserver* observer);
     void rimuoviObserver(IObserver* observer);
     void notifica();
-    void notificaEliminazione(const std::string& nomeOggetto);  // Nuovo metodo per la notifica di eliminazione
+    void notificaEliminazione(const std::string& nomeOggetto); // Nuovo metodo per la notifica di eliminazione
+
+    const std::vector<Oggetto>& getOggetti() const {
+        return oggetti;
+    }
 };
 
 
