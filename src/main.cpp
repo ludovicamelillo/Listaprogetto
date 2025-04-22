@@ -1,6 +1,6 @@
-#include "oggetto.h"
-#include "listaspesa.h"
-#include "utente.h"
+#include "../include/oggetto.h"
+#include "../include/listaspesa.h"
+#include "../include/utente.h"
 #include <memory>
 
 int main() {

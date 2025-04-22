@@ -1,4 +1,4 @@
-#include "listaspesa.h"
+#include "../include/listaspesa.h"
 #include <algorithm>
 #include <iostream>
 

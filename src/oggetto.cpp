@@ -1,5 +1,5 @@
 #include <sstream>
-#include "oggetto.h"
+#include "../include/oggetto.h"
 #include <iostream>
 
 Oggetto::Oggetto(const std::string& nome, const std::string& categoria, int quantita)

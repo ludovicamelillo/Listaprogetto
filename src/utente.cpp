@@ -1,4 +1,4 @@
-#include "utente.h"
+#include "../include/utente.h"
 #include <iostream>
 
 Utente::Utente(const std::string& nome) : nome(nome), listaSeguita(nullptr) {}
