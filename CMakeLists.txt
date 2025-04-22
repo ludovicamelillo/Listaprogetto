@@ -3,7 +3,20 @@ project(Listaprogetto)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Listaprogetto src/main.cpp src/utente.cpp include/utente.h src/oggetto.cpp include/oggetto.h src/listaspesa.cpp include/listaspesa.h)
+include_directories(googletest/googletest/include)
+include_directories(googletest/googlemock/include)
+
+add_subdirectory(googletest)
+
+add_executable(Listaprogetto
+        src/main.cpp
+        src/utente.cpp
+        include/utente.h
+        src/oggetto.cpp
+        include/oggetto.h
+        src/listaspesa.cpp
+        include/listaspesa.h
+        )
 
 set(SOURCE_FILES
         src/main.cpp
@@ -11,5 +24,11 @@ set(SOURCE_FILES
         src/oggetto.cpp
         src/listaspesa.cpp
         )
+
+set(TEST_FILES
+        tests/test_lista_spesa.cpp)
+
+add_executable(runTests ${TEST_FILES})
+target_link_libraries(runTests gtest gmock pthread)
 
 include_directories(include)
