@@ -73,3 +73,9 @@ void ListaSpesa::notificaEliminazione(const std::string& nomeOggetto) {
         observer->notificaEliminazione(nomeOggetto);
     }
 }
+
+// Aggiunta metodo reset
+void ListaSpesa::reset() {
+    oggetti.clear();  // Svuota la lista degli oggetti
+    notifica();       // Notifica gli osservatori della modifica
+}

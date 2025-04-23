@@ -50,4 +50,20 @@ TEST(ListaSpesaTest, ListaVuotaTest) {
     ASSERT_EQ(0, lista.getOggetti().size());  // La lista non dovrebbe contenere oggetti
 }
 
+TEST(ListaSpesaTest, ResetTest) {
+    // Crea una lista della spesa
+    ListaSpesa lista;
 
+    // Aggiungi un oggetto alla lista
+    Oggetto mela("Mele", "Frutta", 5);
+    lista.aggiungiOggetto(mela);
+
+    // Verifica che la lista contenga un oggetto
+    ASSERT_EQ(1, lista.getOggetti().size());
+
+    // Resetta la lista
+    lista.reset();
+
+    // Verifica che la lista sia vuota dopo il reset
+    ASSERT_EQ(0, lista.getOggetti().size());
+}
