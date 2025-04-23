@@ -28,7 +28,12 @@ set(SOURCE_FILES
 set(TEST_FILES
         tests/test_lista_spesa.cpp)
 
-add_executable(runTests ${TEST_FILES})
+add_executable(runTests
+        tests/test_lista_spesa.cpp
+        src/utente.cpp
+        src/oggetto.cpp
+        src/listaspesa.cpp
+        )
 target_link_libraries(runTests gtest gmock pthread)
 
 include_directories(include)

@@ -30,10 +30,24 @@ TEST(ListaSpesaTest, RimuoviOggettoNonPresenteTest) {
     lista.aggiungiOggetto(pane);
 
     // Provo a rimuovere un oggetto che non c'è
-    lista.rimuoviOggetto("Mandarino");
+    lista.rimuoviOggetto("Latte");
 
     // La lista deve avere ancora un solo oggetto
     ASSERT_EQ(1, lista.getOggetti().size());
     ASSERT_EQ("Pane", lista.getOggetti()[0].getNome());
 }
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
+TEST(ListaSpesaTest, ListaVuotaTest) {
+    // Crea una lista vuota della spesa
+    ListaSpesa lista;
+
+    // Verifica che la lista sia vuota
+    ASSERT_EQ(0, lista.getOggetti().size());  // La lista non dovrebbe contenere oggetti
+}
+
 
