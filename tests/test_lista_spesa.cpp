@@ -23,3 +23,17 @@ TEST(ListaSpesaTest, RimuoviOggettoTest) {
     // Verifica che l'oggetto sia stato rimosso
     ASSERT_EQ(0, lista.getOggetti().size());  // Verifica che la lista sia vuota
 }
+
+TEST(ListaSpesaTest, RimuoviOggettoNonPresenteTest) {
+    ListaSpesa lista;
+    Oggetto pane("Pane", "Forno", 2);
+    lista.aggiungiOggetto(pane);
+
+    // Provo a rimuovere un oggetto che non c'è
+    lista.rimuoviOggetto("Mandarino");
+
+    // La lista deve avere ancora un solo oggetto
+    ASSERT_EQ(1, lista.getOggetti().size());
+    ASSERT_EQ("Pane", lista.getOggetti()[0].getNome());
+}
+
