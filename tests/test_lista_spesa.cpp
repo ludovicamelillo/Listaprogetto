@@ -67,3 +67,14 @@ TEST(ListaSpesaTest, ResetTest) {
     // Verifica che la lista sia vuota dopo il reset
     ASSERT_EQ(0, lista.getOggetti().size());
 }
+
+TEST(ListaSpesaTest, AggiungiOggettoDuplicatoTest) {
+    ListaSpesa lista;
+    Oggetto mela("Mele", "Frutta", 5);
+    lista.aggiungiOggetto(mela);       // Prima aggiunta
+    lista.aggiungiOggetto(mela);       // Tentativo di duplicato
+
+    // Verifica che l'oggetto sia presente solo una volta
+    ASSERT_EQ(1, lista.getOggetti().size());
+    ASSERT_EQ("Mele", lista.getOggetti()[0].getNome());
+}
