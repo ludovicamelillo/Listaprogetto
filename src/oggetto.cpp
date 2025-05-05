@@ -34,3 +34,12 @@ void Oggetto::setQuantita(int nuovaQuantita) {
     }
     quantita = nuovaQuantita;
 }
+
+bool Oggetto::getDaComprare() const {
+    return daComprare;
+}
+
+void Oggetto::setDaComprare(bool valore) {
+    daComprare = valore;
+}
+

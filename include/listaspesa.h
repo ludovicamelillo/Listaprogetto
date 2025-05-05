@@ -23,6 +23,7 @@ public:
     int contaOggettiDaComprare() const;
     Oggetto* cercaOggetto(const std::string& nome) const;
     std::vector<Oggetto> listaOggettiDaComprare() const;
+    const std::vector<Oggetto>& getOggetti() const;
 
 };
 

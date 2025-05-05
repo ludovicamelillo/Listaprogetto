@@ -104,3 +104,7 @@ std::vector<Oggetto> ListaSpesa::listaOggettiDaComprare() const {
     }
     return daComprare;
 }
+
+const std::vector<Oggetto>& ListaSpesa::getOggetti() const {
+    return oggetti;
+}
