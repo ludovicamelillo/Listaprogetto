@@ -1,25 +1,24 @@
 #ifndef UTENTE_H
 #define UTENTE_H
-
+#include "observer.h"
 #include <string>
 #include "listaspesa.h"
 #include <memory>
+#include "observer.h"
 
-// Classe Utente (Observer)
-class Utente : public IObserver {
+class Utente : public Observer {
 private:
     std::string nome;
-    std::shared_ptr<ListaSpesa> listaSeguita;
+    ListaSpesa* listaSeguita;
+
 
 public:
     explicit Utente(const std::string& nome);
 
-    void seguiLista(const std::shared_ptr<ListaSpesa>& lista);
     void smettiDiSeguire();
     void aggiorna() override;
-    void notificaEliminazione(const std::string& nomeOggetto) override;  // Nuovo metodo per la notifica di eliminazione
     ~Utente() override;
-
+    void seguiLista(ListaSpesa *lista);
 };
 
 #endif // UTENTE_H

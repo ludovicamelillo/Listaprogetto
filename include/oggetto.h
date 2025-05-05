@@ -1,8 +1,5 @@
-
-
 #ifndef OGGETTO_H
 #define OGGETTO_H
-
 #include <string>
 
 class Oggetto {
@@ -17,11 +14,9 @@ public:
     std::string getNome() const;
     std::string getCategoria() const;
     int getQuantita() const;
-
-    void setQuantita(int nuovaQuantita);
     void stampaOggetto() const;
     std::string toString() const;
-
+    void setQuantita(int nuovaQuantita);
 };
 
 #endif // OGGETTO_H

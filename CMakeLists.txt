@@ -16,7 +16,7 @@ add_executable(Listaprogetto
         include/oggetto.h
         src/listaspesa.cpp
         include/listaspesa.h
-        )
+        include/observer.h)
 
 set(SOURCE_FILES
         src/main.cpp

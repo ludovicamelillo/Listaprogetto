@@ -17,10 +17,6 @@ int Oggetto::getQuantita() const {
     return quantita;
 }
 
-void Oggetto::setQuantita(int nuovaQuantita) {
-    quantita = nuovaQuantita;
-}
-
 void Oggetto::stampaOggetto() const {
     std::cout << nome << " (" << categoria << "): " << quantita << std::endl;
 }
@@ -29,4 +25,12 @@ std::string Oggetto::toString() const {
     std::ostringstream oss;
     oss << nome << " (" << categoria << "): " << quantita;
     return oss.str();
+}
+
+void Oggetto::setQuantita(int nuovaQuantita) {
+    if (nuovaQuantita < 0) {
+        std::cout << "[Errore] La quantità non può essere negativa." << std::endl;
+        return;
+    }
+    quantita = nuovaQuantita;
 }

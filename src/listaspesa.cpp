@@ -29,7 +29,6 @@ void ListaSpesa::rimuoviOggetto(const std::string& nomeOggetto) {
 
     if (it != oggetti.end()) {
         oggetti.erase(it, oggetti.end());  // Rimuovi l'oggetto trovato
-        notificaEliminazione(nomeOggetto); // Notifica gli osservatori della rimozione
         notifica(); // Mostra la nuova lista
     } else {
         std::cout << "[Info] Nessun oggetto chiamato \"" << nomeOggetto << "\" è stato trovato nella lista." << std::endl;
@@ -52,11 +51,11 @@ void ListaSpesa::stampaLista() const {
     }
 }
 
-void ListaSpesa::aggiungiObserver(IObserver* observer) {
+void ListaSpesa::aggiungiObserver(Observer* observer) {
     observers.push_back(observer);
 }
 
-void ListaSpesa::rimuoviObserver(IObserver* observer) {
+void ListaSpesa::rimuoviObserver(Observer* observer) {
     observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
 }
 
@@ -66,16 +65,42 @@ void ListaSpesa::notifica() {
     }
 }
 
-// Notifica agli osservatori che un oggetto è stato eliminato dalla lista
-void ListaSpesa::notificaEliminazione(const std::string& nomeOggetto) {
-    for (auto observer : observers) {
-        // Notifica ogni osservatore che l'oggetto è stato eliminato
-        observer->notificaEliminazione(nomeOggetto);
-    }
-}
-
 // Aggiunta metodo reset
 void ListaSpesa::reset() {
     oggetti.clear();  // Svuota la lista degli oggetti
     notifica();       // Notifica gli osservatori della modifica
+}
+
+//Aggiunta metodi per vedere quanti oggetti contiene e quanti oggetti da comprare
+int ListaSpesa::contaOggetti() const {
+    return oggetti.size();
+}
+
+int ListaSpesa::contaOggettiDaComprare() const {
+    int count = 0;
+    for (const auto& oggetto : oggetti) {
+        if (oggetto.getQuantita() > 0) {
+            count++;
+        }
+    }
+    return count;
+}
+//cerca oggetti
+Oggetto* ListaSpesa::cercaOggetto(const std::string& nome) const {
+    for (auto& oggetto : oggetti) {
+        if (oggetto.getNome() == nome) {
+            return const_cast<Oggetto*>(&oggetto);
+        }
+    }
+    return nullptr; // Oggetto non trovato
+}
+
+std::vector<Oggetto> ListaSpesa::listaOggettiDaComprare() const {
+    std::vector<Oggetto> daComprare;
+    for (const auto& oggetto : oggetti) {
+        if (oggetto.getQuantita() > 0) {
+            daComprare.push_back(oggetto);
+        }
+    }
+    return daComprare;
 }

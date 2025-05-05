@@ -2,15 +2,14 @@
 #include "../include/listaspesa.h"
 #include "../include/utente.h"
 #include <memory>
+#include "observer.h"
 
 int main() {
     // Creazione utenti
     Utente utente1("Ludovica");
     Utente utente2("Daniela");
 
-    // Creazione lista della spesa condivisa con shared_pyt
-    auto listaSpesa = std::make_shared<ListaSpesa>();
-
+    ListaSpesa* listaSpesa = new ListaSpesa();
 
     //Gli utenti seguono la stessa lista
     utente1.seguiLista(listaSpesa);

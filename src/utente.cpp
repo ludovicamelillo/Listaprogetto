@@ -3,7 +3,7 @@
 
 Utente::Utente(const std::string& nome) : nome(nome), listaSeguita(nullptr) {}
 
-void Utente::seguiLista(const std::shared_ptr<ListaSpesa>& lista) {
+void Utente::seguiLista(ListaSpesa* lista) {
     listaSeguita = lista;
     listaSeguita->aggiungiObserver(this);
 }
@@ -11,7 +11,7 @@ void Utente::seguiLista(const std::shared_ptr<ListaSpesa>& lista) {
 void Utente::smettiDiSeguire() {
     if (listaSeguita) {
         listaSeguita->rimuoviObserver(this);
-        listaSeguita.reset();
+        listaSeguita= nullptr;
     }
 }
 
@@ -20,10 +20,6 @@ void Utente::aggiorna() {
     if (listaSeguita) {
         listaSeguita->stampaLista();
     }
-}
-
-void Utente::notificaEliminazione(const std::string& prodotto) {
-    // Non stampo nulla qui per evitare duplicati
 }
 
 Utente::~Utente() {
