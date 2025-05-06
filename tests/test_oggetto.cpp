@@ -1,37 +1,42 @@
 #include "../include/oggetto.h"
 #include <cassert>
 #include <iostream>
+#include <gtest/gtest.h>
 
-void testCostruttore() {
-    Oggetto o("Pane", "Alimentari", 2);
-    assert(o.getNome() == "Pane");
-    assert(o.getCategoria() == "Alimentari");
-    assert(o.getQuantita() == 2);
-    std::cout << "✓ testCostruttore superato\n";
+TEST(OggettoTest, CostruttoreValido) {
+Oggetto o("Pane", "Alimentari", 3);
+EXPECT_EQ(o.getNome(), "Pane");
+EXPECT_EQ(o.getCategoria(), "Alimentari");
+EXPECT_EQ(o.getQuantita(), 3);
 }
 
-void testSetQuantita() {
-    Oggetto o("Latte", "Bevande", 1);
-    o.setQuantita(5);
-    assert(o.getQuantita() == 5);
-    o.setQuantita(-3);
-    assert(o.getQuantita() == 5);
-    std::cout << "✓ testSetQuantita superato\n";
+TEST(OggettoTest, CostruttoreQuantitaNegativa) {
+    Oggetto o("Latte", "Latticini", -2);
+    EXPECT_EQ(o.getQuantita(), 0); // quantità impostata a 0 in caso di valore negativo
 }
 
-void testDaComprare() {
+TEST(OggettoTest, DaComprareGetterSetter) {
     Oggetto o("Uova", "Alimentari", 6);
-    assert(!o.getDaComprare());
+    EXPECT_FALSE(o.getDaComprare());
     o.setDaComprare(true);
-    assert(o.getDaComprare());
-    std::cout << "✓ testDaComprare superato\n";
+    EXPECT_TRUE(o.getDaComprare());
 }
 
-void testToString() {
+TEST(OggettoTest, ToStringTest) {
     Oggetto o("Caffè", "Bevande", 3);
     o.setDaComprare(true);
     std::string expected = "Oggetto: Caffè | Categoria: Bevande | Quantità: 3 | Da Comprare: Sì\n";
-    assert(o.toString() == expected);
-    std::cout << "✓ testToString superato\n";
+    EXPECT_EQ(o.toString(), expected);
 }
 
+TEST(OggettoTest, SetQuantitaValida) {
+    Oggetto o("Uova", "Alimentari", 6);
+    o.setQuantita(4);
+    EXPECT_EQ(o.getQuantita(), 4);
+}
+
+TEST(OggettoTest, SetQuantitaNegativa) {
+    Oggetto o("Burro", "Latticini", 2);
+    o.setQuantita(-3);
+    EXPECT_EQ(o.getQuantita(), 2);
+}

@@ -78,3 +78,34 @@ TEST(ListaSpesaTest, AggiungiOggettoDuplicatoTest) {
     ASSERT_EQ(1, lista.getOggetti().size());
     ASSERT_EQ("Mele", lista.getOggetti()[0].getNome());
 }
+
+TEST(ListaSpesaTest, ContaOggettiTest) {
+    ListaSpesa lista;
+    lista.aggiungiOggetto(Oggetto("Pane", "Alimentari", 1));
+    lista.aggiungiOggetto(Oggetto("Latte", "Alimentari", 2));
+    EXPECT_EQ(lista.contaOggetti(), 2);
+}
+
+TEST(ListaSpesaTest, ContaOggettiDaComprareTest) {
+    ListaSpesa lista;
+    lista.aggiungiOggetto(Oggetto("Mele", "Frutta", 4));
+    lista.aggiungiOggetto(Oggetto("Biscotti", "Dolci", 0)); // non va contato
+    EXPECT_EQ(lista.contaOggettiDaComprare(), 1);
+}
+
+TEST(ListaSpesaTest, CercaOggettoPresenteTest) {
+    ListaSpesa lista;
+    lista.aggiungiOggetto(Oggetto("Acqua", "Bevande", 6));
+    Oggetto* trovato = lista.cercaOggetto("Acqua");
+    ASSERT_NE(trovato, nullptr);
+    EXPECT_EQ(trovato->getNome(), "Acqua");
+}
+
+TEST(ListaSpesaTest, ListaOggettiDaComprareTest) {
+    ListaSpesa lista;
+    lista.aggiungiOggetto(Oggetto("Pasta", "Alimentari", 1));
+    lista.aggiungiOggetto(Oggetto("Zucchero", "Alimentari", 0)); // non incluso
+    auto daComprare = lista.listaOggettiDaComprare();
+    ASSERT_EQ(daComprare.size(), 1);
+    EXPECT_EQ(daComprare[0].getNome(), "Pasta");
+}

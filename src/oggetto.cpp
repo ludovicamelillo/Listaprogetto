@@ -3,7 +3,14 @@
 #include <iostream>
 
 Oggetto::Oggetto(const std::string& nome, const std::string& categoria, int quantita)
-        : nome(nome), categoria(categoria), quantita(quantita) {}
+        : nome(nome), categoria(categoria), quantita(quantita), daComprare(false) {
+    if (quantita < 0) {
+        std::cerr << "[Errore] Quantità negativa, impostata a 0.\n";
+        this->quantita = 0;
+    }else{
+        this->quantita=quantita;
+    }
+}
 
 std::string Oggetto::getNome() const {
     return nome;
@@ -23,17 +30,21 @@ void Oggetto::stampaOggetto() const {
 
 std::string Oggetto::toString() const {
     std::ostringstream oss;
-    oss << nome << " (" << categoria << "): " << quantita;
+    oss << "Oggetto: " << nome
+        << " | Categoria: " << categoria
+        << " | Quantità: " << quantita
+        << " | Da Comprare: " << (daComprare ? "Sì" : "No") << "\n";
     return oss.str();
 }
 
-void Oggetto::setQuantita(int nuovaQuantita) {
-    if (nuovaQuantita < 0) {
-        std::cout << "[Errore] La quantità non può essere negativa." << std::endl;
-        return;
+void Oggetto::setQuantita(int quantita) {
+    if (quantita < 0) {
+        this->quantita = this->quantita; // mantenere il valore attuale
+    } else {
+        this->quantita = quantita;
     }
-    quantita = nuovaQuantita;
 }
+
 
 bool Oggetto::getDaComprare() const {
     return daComprare;
