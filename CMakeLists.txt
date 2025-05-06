@@ -32,10 +32,11 @@ set(TEST_FILES
 add_executable(runTests
         tests/test_lista_spesa.cpp
         tests/test_oggetto.cpp
+        tests/test_utente.cpp
         src/utente.cpp
         src/oggetto.cpp
         src/listaspesa.cpp
-        tests/test_oggetto.cpp)
+        tests/test_oggetto.cpp tests/test_utente.cpp)
 target_link_libraries(runTests gtest gmock pthread)
 
 include_directories(include)
