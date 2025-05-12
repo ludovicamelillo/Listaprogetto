@@ -86,20 +86,31 @@ TEST(ListaSpesaTest, ContaOggettiTest) {
     EXPECT_EQ(lista.contaOggetti(), 2);
 }
 
-TEST(ListaSpesaTest, ContaOggettiDaComprareTest) {
+// Successo: cercaOggetti trova risultati
+TEST(ListaSpesaTest, CercaOggettiSuccesso) {
     ListaSpesa lista;
-    lista.aggiungiOggetto(Oggetto("Mele", "Frutta", 4));
-    lista.aggiungiOggetto(Oggetto("Biscotti", "Dolci", 0)); // non va contato
-    EXPECT_EQ(lista.contaOggettiDaComprare(), 1);
+    lista.aggiungiOggetto(Oggetto("vino rosso", "bevande", 1));
+    lista.aggiungiOggetto(Oggetto("vino bianco","bevande", 1));
+    lista.aggiungiOggetto(Oggetto("pane", "cereali", 1));
+
+    auto risultati = lista.cercaOggetti("vino");
+
+    ASSERT_EQ(risultati.size(), 2);
+    EXPECT_TRUE(risultati[0].getNome().find("vino") != std::string::npos);
+    EXPECT_TRUE(risultati[1].getNome().find("vino") != std::string::npos);
 }
 
-TEST(ListaSpesaTest, CercaOggettoPresenteTest) {
+// Fallimento: cercaOggetti non trova nulla
+TEST(ListaSpesaTest, CercaOggettiFallimento) {
     ListaSpesa lista;
-    lista.aggiungiOggetto(Oggetto("Acqua", "Bevande", 6));
-    Oggetto* trovato = lista.cercaOggetto("Acqua");
-    ASSERT_NE(trovato, nullptr);
-    EXPECT_EQ(trovato->getNome(), "Acqua");
+    lista.aggiungiOggetto(Oggetto("latte", "latticini", 1));
+    lista.aggiungiOggetto(Oggetto("pane", "cereali", 2));
+
+    auto risultati = lista.cercaOggetti("vino");
+
+    ASSERT_TRUE(risultati.empty());
 }
+
 
 TEST(ListaSpesaTest, ListaOggettiDaComprareTest) {
     ListaSpesa lista;

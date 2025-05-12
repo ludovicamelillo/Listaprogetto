@@ -19,6 +19,8 @@ public:
     void aggiorna() override;
     ~Utente() override;
     void seguiLista(ListaSpesa *lista);
+    void aggiornaCont();
+    void setListaSpesa(ListaSpesa* lista);
 };
 
 #endif // UTENTE_H

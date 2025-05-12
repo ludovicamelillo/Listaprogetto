@@ -2,7 +2,6 @@
 #include "../include/listaspesa.h"
 #include "../include/utente.h"
 #include <memory>
-#include "observer.h"
 
 int main() {
     // Creazione utenti

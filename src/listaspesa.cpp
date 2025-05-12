@@ -1,6 +1,7 @@
 #include "../include/listaspesa.h"
 #include <algorithm>
 #include <iostream>
+#include "oggetto.h"
 
 //aggiungi un oggetto alla lista
 void ListaSpesa::aggiungiOggetto(const Oggetto& oggetto) {
@@ -75,24 +76,15 @@ void ListaSpesa::reset() {
 int ListaSpesa::contaOggetti() const {
     return oggetti.size();
 }
-
-int ListaSpesa::contaOggettiDaComprare() const {
-    int count = 0;
-    for (const auto& oggetto : oggetti) {
-        if (oggetto.getQuantita() > 0) {
-            count++;
-        }
-    }
-    return count;
-}
 //cerca oggetti
-Oggetto* ListaSpesa::cercaOggetto(const std::string& nome) const {
-    for (auto& oggetto : oggetti) {
-        if (oggetto.getNome() == nome) {
-            return const_cast<Oggetto*>(&oggetto);
+std::vector<Oggetto> ListaSpesa::cercaOggetti(const std::string& sottostringa) const {
+    std::vector<Oggetto> risultati;
+    for (const auto& oggetto : oggetti) {
+        if (oggetto.getNome().find(sottostringa) != std::string::npos) {
+            risultati.push_back(oggetto);
         }
     }
-    return nullptr; // Oggetto non trovato
+    return risultati;
 }
 
 std::vector<Oggetto> ListaSpesa::listaOggettiDaComprare() const {

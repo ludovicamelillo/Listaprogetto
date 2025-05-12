@@ -18,8 +18,21 @@ void Utente::smettiDiSeguire() {
 void Utente::aggiorna() {
     std::cout << "Utente " << nome << " ha ricevuto un aggiornamento sulla lista della spesa." << std::endl;
     if (listaSeguita) {
-        listaSeguita->stampaLista();
+       aggiornaCont();
     }
+}
+
+void Utente::aggiornaCont() {
+    if (listaSeguita) {
+        listaSeguita->stampaLista();  // Chiama il metodo per stampare la lista aggiornata
+    } else {
+        std::cout << "Nessuna lista seguita!" << std::endl;
+    }
+}
+
+void Utente::setListaSpesa(ListaSpesa* lista) {
+    listaSeguita = lista;
+    listaSeguita->aggiungiObserver(this);
 }
 
 Utente::~Utente() {
