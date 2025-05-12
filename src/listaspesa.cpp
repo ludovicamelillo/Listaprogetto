@@ -76,6 +76,15 @@ void ListaSpesa::reset() {
 int ListaSpesa::contaOggetti() const {
     return oggetti.size();
 }
+int ListaSpesa::contaOggettiDaComprare() const {
+    int count = 0;
+    for (const auto& oggetto : oggetti) {
+        if (oggetto.getDaComprare()) {
+            count++;
+        }
+    }
+    return count;
+}
 //cerca oggetti
 std::vector<Oggetto> ListaSpesa::cercaOggetti(const std::string& sottostringa) const {
     std::vector<Oggetto> risultati;

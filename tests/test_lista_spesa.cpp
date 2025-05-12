@@ -86,6 +86,12 @@ TEST(ListaSpesaTest, ContaOggettiTest) {
     EXPECT_EQ(lista.contaOggetti(), 2);
 }
 
+TEST(ListaSpesaTest, ContaOggettiDaComprareTest) {
+    ListaSpesa lista;
+    lista.aggiungiOggetto(Oggetto("Mele", "Frutta", 4));
+    lista.aggiungiOggetto(Oggetto("Biscotti", "Dolci", 0)); // non va contato
+    EXPECT_EQ(lista.contaOggettiDaComprare(), 1);
+}
 // Successo: cercaOggetti trova risultati
 TEST(ListaSpesaTest, CercaOggettiSuccesso) {
     ListaSpesa lista;

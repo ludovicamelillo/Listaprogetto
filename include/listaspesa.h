@@ -20,6 +20,7 @@ public:
     void notifica();
     void reset();
     int contaOggetti() const;
+    int contaOggettiDaComprare() const;
     std::vector<Oggetto> cercaOggetti(const std::string& sottostringa) const;
     std::vector<Oggetto> listaOggettiDaComprare() const;
     const std::vector<Oggetto>& getOggetti() const;
