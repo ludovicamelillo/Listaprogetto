@@ -2,8 +2,8 @@
 #include "../include/oggetto.h"
 #include <iostream>
 
-Oggetto::Oggetto(const std::string& nome, const std::string& categoria, int quantita)
-        : nome(nome), categoria(categoria), quantita(quantita), daComprare(false) {
+Oggetto::Oggetto(const std::string& nome, const std::string& categoria, int quantita, bool daComprare)
+        : nome(nome), categoria(categoria), quantita(quantita), daComprare(daComprare) {
     if (quantita < 0) {
         std::cerr << "[Errore] Quantità negativa, impostata a 0.\n";
         this->quantita = 0;

@@ -22,7 +22,7 @@ void Utente::aggiorna() {
     }
 }
 
-void Utente::aggiornaCont() {
+void Utente::aggiornaCont() const {
     if (listaSeguita) {
         listaSeguita->stampaLista();  // Chiama il metodo per stampare la lista aggiornata
     } else {

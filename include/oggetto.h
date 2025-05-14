@@ -10,7 +10,7 @@ private:
     bool daComprare;
 
 public:
-    Oggetto(const std::string& nome, const std::string& categoria, int quantita);
+    Oggetto(const std::string& nome, const std::string& categoria, int quantita, bool daComprare=true);
 
     std::string getNome() const;
     std::string getCategoria() const;

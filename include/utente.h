@@ -19,7 +19,7 @@ public:
     void aggiorna() override;
     ~Utente() override;
     void seguiLista(ListaSpesa *lista);
-    void aggiornaCont();
+    void aggiornaCont() const;
     void setListaSpesa(ListaSpesa* lista);
 };
 
